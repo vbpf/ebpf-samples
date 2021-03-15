@@ -8,7 +8,8 @@ add_custom_target(samples ALL
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/exposeptr.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/exposeptr2.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/mapoverflow.o
-                          ${CMAKE_CURRENT_SOURCE_DIR}/build/mapunderflow.o)
+                          ${CMAKE_CURRENT_SOURCE_DIR}/build/mapunderflow.o
+                          ${CMAKE_CURRENT_SOURCE_DIR}/build/nullmapref.o)
 
 # We use custom commands here so that the same command will be used on
 # Linux and Windows (where cmake would normally use cl instead of clang).
@@ -32,3 +33,7 @@ add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/mapoverflow.o
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/mapunderflow.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/mapunderflow.c
                    COMMAND clang -target bpf -Wall -O2 -c ${CMAKE_CURRENT_SOURCE_DIR}/src/mapunderflow.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/mapunderflow.o)
+
+add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/nullmapref.o
+                   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/nullmapref.c
+                   COMMAND clang -target bpf -Wall -O2 -c ${CMAKE_CURRENT_SOURCE_DIR}/src/nullmapref.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/nullmapref.o)

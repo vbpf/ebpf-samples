@@ -11,6 +11,7 @@ add_custom_target(samples ALL
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/mapunderflow.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/mapvalue-overrun.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/nullmapref.o
+                          ${CMAKE_CURRENT_SOURCE_DIR}/build/stackok.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/wronghelper.o)
 
 # We use custom commands here so that the same command will be used on
@@ -43,6 +44,10 @@ add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/mapvalue-overrun.o
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/nullmapref.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/nullmapref.c
                    COMMAND clang -target bpf -Wall -O2 -c ${CMAKE_CURRENT_SOURCE_DIR}/src/nullmapref.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/nullmapref.o)
+
+add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/stackok.o
+                   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/stackok.c
+                   COMMAND clang -target bpf -Wall -O2 -c ${CMAKE_CURRENT_SOURCE_DIR}/src/stackok.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/stackok.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/wronghelper.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/wronghelper.c

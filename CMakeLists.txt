@@ -6,6 +6,7 @@ project(ebpf_samples)
 add_custom_target(samples ALL
                   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/build/badhelpercall.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/badmapptr.o
+                          ${CMAKE_CURRENT_SOURCE_DIR}/build/ctxoffset.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/exposeptr.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/exposeptr2.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/mapoverflow.o
@@ -25,6 +26,10 @@ add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/badhelpercall.o
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/badmapptr.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/badmapptr.c
                    COMMAND clang -target bpf -Wall -O2 -c ${CMAKE_CURRENT_SOURCE_DIR}/src/badmapptr.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/badmapptr.o)
+
+add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/ctxoffset.o
+                   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/ctxoffset.c
+                   COMMAND clang -target bpf -Wall -O2 -c ${CMAKE_CURRENT_SOURCE_DIR}/src/ctxoffset.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/ctxoffset.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/exposeptr.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/exposeptr.c

@@ -16,6 +16,8 @@ add_custom_target(samples ALL
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/nullmapref.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/stackok.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/packet_start_ok.o
+                          ${CMAKE_CURRENT_SOURCE_DIR}/build/packet_overflow.o
+                          ${CMAKE_CURRENT_SOURCE_DIR}/build/packet_reallocate.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/wronghelper.o)
 
 # We use custom commands here so that the same command will be used on
@@ -68,6 +70,14 @@ add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/stackok.o
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/packet_start_ok.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/packet_start_ok.c
                    COMMAND clang -target bpf -Wall -O2 -c ${CMAKE_CURRENT_SOURCE_DIR}/src/packet_start_ok.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/packet_start_ok.o)
+
+add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/packet_overflow.o
+                   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/packet_overflow.c
+                   COMMAND clang -target bpf -Wall -O2 -c ${CMAKE_CURRENT_SOURCE_DIR}/src/packet_overflow.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/packet_overflow.o)
+
+add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/packet_reallocate.o
+                   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/packet_reallocate.c
+                   COMMAND clang -target bpf -Wall -O2 -c ${CMAKE_CURRENT_SOURCE_DIR}/src/packet_reallocate.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/packet_reallocate.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/wronghelper.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/wronghelper.c

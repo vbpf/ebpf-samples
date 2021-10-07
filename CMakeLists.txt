@@ -7,6 +7,7 @@ add_custom_target(samples ALL
                   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/build/badhelpercall.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/badmapptr.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/badrelo.o
+                          ${CMAKE_CURRENT_SOURCE_DIR}/build/byteswap.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/ctxoffset.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/exposeptr.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/exposeptr2.o
@@ -37,6 +38,10 @@ add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/badmapptr.o
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/badrelo.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/badrelo.c
                    COMMAND clang -target bpf -Wall -O2 -c ${CMAKE_CURRENT_SOURCE_DIR}/src/badrelo.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/badrelo.o)
+
+add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/byteswap.o
+                   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/byteswap.c
+                   COMMAND clang -target bpf -Wall -O2 -c ${CMAKE_CURRENT_SOURCE_DIR}/src/byteswap.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/byteswap.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/ctxoffset.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/ctxoffset.c

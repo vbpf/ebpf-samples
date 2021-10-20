@@ -20,7 +20,7 @@ __attribute__((section("maps"), used))
 struct ebpf_map array_of_maps =
     {.type = BPF_MAP_TYPE_ARRAY_OF_MAPS,
      .key_size = sizeof(uint32_t),
-     .value_size = sizeof(uint64_t),
+     .value_size = sizeof(uint32_t),
      .max_entries = 1,
      .inner_map_idx = 1}; // (uint32_t)&inner_map};
 

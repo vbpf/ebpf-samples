@@ -24,6 +24,7 @@ add_custom_target(samples ALL
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/tail_call.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/tail_call_bad.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/twomaps.o
+                          ${CMAKE_CURRENT_SOURCE_DIR}/build/twotypes.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/wronghelper.o)
 
 # We use custom commands here so that the same command will be used on
@@ -108,6 +109,10 @@ add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/tail_call_bad.o
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/twomaps.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/twomaps.c
                    COMMAND clang -target bpf -Wall -O2 -c ${CMAKE_CURRENT_SOURCE_DIR}/src/twomaps.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/twomaps.o)
+
+add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/twotypes.o
+                   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/twotypes.c
+                   COMMAND clang -target bpf -Wall -O2 -c ${CMAKE_CURRENT_SOURCE_DIR}/src/twotypes.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/twotypes.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/wronghelper.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/wronghelper.c

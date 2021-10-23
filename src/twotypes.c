@@ -43,5 +43,5 @@ int func(struct ctx* ctx)
         ptr = stack_buffer + 128;
     }
 
-    return *ptr;
+    return (*ptr) ? 1 : 0;
 }

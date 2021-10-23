@@ -29,7 +29,8 @@ struct ctx;
 int func(struct ctx* ctx)
 {
     uint32_t rand32 = get_prandom_u32();
-    uint8_t stack_buffer[256] = {0};
+    uint8_t stack_buffer[256] = { 0 };
+    *(uint32_t*)stack_buffer = rand32;
 
     int map_key = 0;
     uint8_t* map_value = (uint8_t*)bpf_map_lookup_elem(&map, &map_key);
@@ -43,5 +44,5 @@ int func(struct ctx* ctx)
         ptr = stack_buffer + 128;
     }
 
-    return (*ptr) ? 1 : 0;
+    return (*ptr == stack_buffer[0]) ? 1 : 0;
 }

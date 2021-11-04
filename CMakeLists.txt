@@ -25,7 +25,8 @@ add_custom_target(samples ALL
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/tail_call_bad.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/twomaps.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/twotypes.o
-                          ${CMAKE_CURRENT_SOURCE_DIR}/build/wronghelper.o)
+                          ${CMAKE_CURRENT_SOURCE_DIR}/build/wronghelper.o
+                          ${CMAKE_CURRENT_SOURCE_DIR}/build/spectre_v1.o)
 
 # We use custom commands here so that the same command will be used on
 # Linux and Windows (where cmake would normally use cl instead of clang).
@@ -117,3 +118,7 @@ add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/twotypes.o
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/wronghelper.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/wronghelper.c
                    COMMAND clang -target bpf -Wall -O2 -c ${CMAKE_CURRENT_SOURCE_DIR}/src/wronghelper.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/wronghelper.o)
+
+add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/spectre_v1.o
+                   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/spectre_v1.c
+                   COMMAND clang -target bpf -Wall -O2 -c ${CMAKE_CURRENT_SOURCE_DIR}/src/spectre_v1.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/spectre_v1.o)

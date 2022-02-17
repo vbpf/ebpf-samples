@@ -1,7 +1,7 @@
-; ./ebpf-samples/src/stackok.c:8
+; /home/alanjo/ebpf-verifier/ebpf-samples/src/stackok.c:8
 ; int func(void* ctx)
        0:	r1 = 0
-; ./ebpf-samples/src/stackok.c:11
+; /home/alanjo/ebpf-verifier/ebpf-samples/src/stackok.c:11
 ;    char array[256] = "";
        1:	*(u64 *)(r10 - 8) = r1
        2:	*(u64 *)(r10 - 16) = r1
@@ -35,15 +35,15 @@
       30:	*(u64 *)(r10 - 240) = r1
       31:	*(u64 *)(r10 - 248) = r1
       32:	*(u64 *)(r10 - 256) = r1
-; ./ebpf-samples/src/stackok.c:14
-;    uint32_t rand32 = get_p
+; /home/alanjo/ebpf-verifier/ebpf-samples/src/stackok.c:14
+;    uint32_t rand32 = get_prandom_u32();
       33:	r0 = get_prandom_u32:7()
-; ./ebpf-samples/src/stackok.c:15
+; /home/alanjo/ebpf-verifier/ebpf-samples/src/stackok.c:15
 ;    uint32_t index = *(unsigned char*)&rand32;
       34:	r0 &= 255
       35:	r1 = r10
       36:	r1 += -256
-; ./ebpf-samples/src/stackok.c:18
+; /home/alanjo/ebpf-verifier/ebpf-samples/src/stackok.c:18
 ; 
       37:	r1 += r0
       38:	r0 = *(u8 *)(r1 + 0)

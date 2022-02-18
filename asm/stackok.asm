@@ -44,7 +44,7 @@
       35:	r1 = r10
       36:	r1 += -256
 ; /home/alanjo/ebpf-verifier/ebpf-samples/src/stackok.c:18
-; 
+;    return array[index];
       37:	r1 += r0
       38:	r0 = *(u8 *)(r1 + 0)
       39:	r0 <<= 56

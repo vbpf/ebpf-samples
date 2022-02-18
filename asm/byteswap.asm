@@ -55,6 +55,6 @@
       30:	r0 = be16 r0
       31:	exit
 ; /home/alanjo/ebpf-verifier/ebpf-samples/src/byteswap.c:25
-; 
+;     return 0;
       32:	r0 = 0
       33:	exit

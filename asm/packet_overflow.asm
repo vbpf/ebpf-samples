@@ -19,5 +19,5 @@
        6:	*(u32 *)(r2 + 0) = r1
        7:	r0 = 0
 ; /home/alanjo/ebpf-verifier/ebpf-samples/src/packet_overflow.c:27
-; 
+; }
        8:	exit

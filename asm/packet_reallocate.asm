@@ -33,6 +33,6 @@
       14:	r1 += 1
       15:	*(u32 *)(r7 + 0) = r1
 ; /home/alanjo/ebpf-verifier/ebpf-samples/src/packet_reallocate.c:34
-; 
+; }
       16:	r0 = r6
       17:	exit

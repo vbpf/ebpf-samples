@@ -78,6 +78,6 @@
       53:	r0 = get_prandom_u32:7()
       54:	*(u32 *)(r10 - 4) = r0
 ; /home/alanjo/ebpf-verifier/ebpf-samples/src/twostackvars.c:45
-; 
+;     return *ptr;
       55:	r0 = *(u32 *)(r7 + 0)
       56:	exit

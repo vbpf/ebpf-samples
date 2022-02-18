@@ -46,5 +46,5 @@
       25:	if r2 > r3 goto +1 <27>
       26:	r0 = *(u32 *)(r1 + 0)
 ; /home/alanjo/ebpf-verifier/ebpf-samples/src/packet_access.c:58
-; 
+; }
       27:	exit

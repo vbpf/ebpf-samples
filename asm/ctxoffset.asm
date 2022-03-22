@@ -14,4 +14,6 @@
        5:	r2 = map_fd 1
        7:	r4 = 0
        8:	r0 = sock_map_update:53(ctx r1, map_fd r2, map_key r3, uint64_t r4)
+; /home/alanjo/ebpf-verifier/ebpf-samples/src/ctxoffset.c:37
+;     return result;
        9:	exit

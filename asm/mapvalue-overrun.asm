@@ -12,10 +12,12 @@
        6:	r0 = map_lookup_elem:1(map_fd r1, map_key r2)
        7:	r1 = r0
        8:	r0 = 0
-       9:	if r1 == 0 goto +1 <11>
 ; /home/alanjo/ebpf-verifier/ebpf-samples/src/mapvalue-overrun.c:31
 ;     if (ptr == 0) {
-      10:	r0 = *(u64 *)(r1 + 0)
+       9:	if r1 == 0 goto +1 <11>
 ; /home/alanjo/ebpf-verifier/ebpf-samples/src/mapvalue-overrun.c:37
 ;     uint64_t i = *ptr;
+      10:	r0 = *(u64 *)(r1 + 0)
+; /home/alanjo/ebpf-verifier/ebpf-samples/src/mapvalue-overrun.c:39
+; }
       11:	exit

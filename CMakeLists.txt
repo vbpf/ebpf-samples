@@ -21,6 +21,7 @@ add_custom_target(samples ALL
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/packet_start_ok.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/packet_overflow.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/packet_reallocate.o
+                          ${CMAKE_CURRENT_SOURCE_DIR}/build/ringbuf_uninit.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/tail_call.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/tail_call_bad.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/twomaps.o
@@ -98,6 +99,10 @@ add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/packet_overflow.o
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/packet_reallocate.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/packet_reallocate.c
                    COMMAND clang -g -target bpf -Wall -O2 -c ${CMAKE_CURRENT_SOURCE_DIR}/src/packet_reallocate.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/packet_reallocate.o)
+
+add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/ringbuf_uninit.o
+                   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/ringbuf_uninit.c
+                   COMMAND clang -g -target bpf -Wall -O2 -c ${CMAKE_CURRENT_SOURCE_DIR}/src/ringbuf_uninit.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/ringbuf_uninit.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/tail_call.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/tail_call.c

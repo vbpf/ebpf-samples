@@ -1,6 +1,6 @@
 ; /home/alanjo/ebpf-verifier/ebpf-samples/src/mapunderflow.c:29
 ; int func(struct ctx* ctx)
-       0:	r1 = -1 ll
+       0:	r1 = 4294967295 ll
 ; /home/alanjo/ebpf-verifier/ebpf-samples/src/mapunderflow.c:31
 ;     int key = -1;
        2:	*(u32 *)(r10 - 4) = r1

@@ -11,6 +11,7 @@ add_custom_target(samples ALL
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/ctxoffset.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/exposeptr.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/exposeptr2.o
+                          ${CMAKE_CURRENT_SOURCE_DIR}/build/loop.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/mapoverflow.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/mapunderflow.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/mapvalue-overrun.o
@@ -59,6 +60,10 @@ add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/exposeptr.o
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/exposeptr2.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/exposeptr2.c
                    COMMAND clang -g -target bpf -Wall -O2 -c ${CMAKE_CURRENT_SOURCE_DIR}/src/exposeptr2.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/exposeptr2.o)
+
+add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/loop.o
+                   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/loop.c
+                   COMMAND clang -g -target bpf -Wall -O2 -c ${CMAKE_CURRENT_SOURCE_DIR}/src/loop.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/loop.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/mapoverflow.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/mapoverflow.c

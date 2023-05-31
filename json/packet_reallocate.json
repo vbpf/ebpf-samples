@@ -1,10 +1,6 @@
 {
   "btf_kinds":[
     {
-      "id": 0,
-      "kind_type": "BTF_KIND_VOID"
-    },
-    {
       "id": 9,
       "kind_type": "BTF_KIND_FUNC",
       "name":"reallocate_invalidates",

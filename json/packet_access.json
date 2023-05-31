@@ -1,0 +1,158 @@
+{
+  "btf_kinds":[
+    {
+      "id": 0,
+      "kind_type": "BTF_KIND_VOID"
+    },
+    {
+      "id": 7,
+      "kind_type": "BTF_KIND_FUNC",
+      "name":"test_packet_access",
+      "type":{
+        "id": 5,
+        "kind_type": "BTF_KIND_FUNC_PROTO",
+        "parameters":[
+          {
+            "name":"ctx",
+            "type":{
+              "id": 1,
+              "kind_type": "BTF_KIND_PTR",
+              "type":{
+                "id": 2,
+                "kind_type": "BTF_KIND_STRUCT",
+                "name":"xdp_md",
+                "size":24,
+                "members":[
+                  {
+                    "name":"data",
+                    "offset":0,
+                    "type":{
+                      "id": 3,
+                      "kind_type": "BTF_KIND_TYPEDEF",
+                      "name":"uint32_t",
+                      "type":{
+                        "id": 4,
+                        "kind_type": "BTF_KIND_INT",
+                        "name":"",
+                        "size":4,
+                        "bits_offset":0,
+                        "is_signed":0,
+                        "is_char":0,
+                        "is_bool":0
+                      }
+                    }
+                  },
+                  {
+                    "name":"data_end",
+                    "offset":32,
+                    "type":{
+                      "id": 3,
+                      "kind_type": "BTF_KIND_TYPEDEF",
+                      "name":"uint32_t",
+                      "type":{
+                        "id": 4,
+                        "kind_type": "BTF_KIND_INT",
+                        "name":"",
+                        "size":4,
+                        "bits_offset":0,
+                        "is_signed":0,
+                        "is_char":0,
+                        "is_bool":0
+                      }
+                    }
+                  },
+                  {
+                    "name":"data_meta",
+                    "offset":64,
+                    "type":{
+                      "id": 3,
+                      "kind_type": "BTF_KIND_TYPEDEF",
+                      "name":"uint32_t",
+                      "type":{
+                        "id": 4,
+                        "kind_type": "BTF_KIND_INT",
+                        "name":"",
+                        "size":4,
+                        "bits_offset":0,
+                        "is_signed":0,
+                        "is_char":0,
+                        "is_bool":0
+                      }
+                    }
+                  },
+                  {
+                    "name":"_1",
+                    "offset":96,
+                    "type":{
+                      "id": 3,
+                      "kind_type": "BTF_KIND_TYPEDEF",
+                      "name":"uint32_t",
+                      "type":{
+                        "id": 4,
+                        "kind_type": "BTF_KIND_INT",
+                        "name":"",
+                        "size":4,
+                        "bits_offset":0,
+                        "is_signed":0,
+                        "is_char":0,
+                        "is_bool":0
+                      }
+                    }
+                  },
+                  {
+                    "name":"_2",
+                    "offset":128,
+                    "type":{
+                      "id": 3,
+                      "kind_type": "BTF_KIND_TYPEDEF",
+                      "name":"uint32_t",
+                      "type":{
+                        "id": 4,
+                        "kind_type": "BTF_KIND_INT",
+                        "name":"",
+                        "size":4,
+                        "bits_offset":0,
+                        "is_signed":0,
+                        "is_char":0,
+                        "is_bool":0
+                      }
+                    }
+                  },
+                  {
+                    "name":"_3",
+                    "offset":160,
+                    "type":{
+                      "id": 3,
+                      "kind_type": "BTF_KIND_TYPEDEF",
+                      "name":"uint32_t",
+                      "type":{
+                        "id": 4,
+                        "kind_type": "BTF_KIND_INT",
+                        "name":"",
+                        "size":4,
+                        "bits_offset":0,
+                        "is_signed":0,
+                        "is_char":0,
+                        "is_bool":0
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "return_type":{
+          "id": 6,
+          "kind_type": "BTF_KIND_INT",
+          "name":"",
+          "size":4,
+          "bits_offset":0,
+          "is_signed":1,
+          "is_char":0,
+          "is_bool":0
+        }
+      }
+    }
+  ]
+}

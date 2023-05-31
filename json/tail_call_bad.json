@@ -30,8 +30,9 @@
           "id": 4,
           "kind_type": "BTF_KIND_INT",
           "name":"",
-          "size":4,
-          "bits_offset":0,
+          "size_in_bytes":4,
+          "offset_from_start_in_bits":0,
+          "field_width_in_bits":32,
           "is_signed":1,
           "is_char":0,
           "is_bool":0
@@ -64,8 +65,9 @@
           "id": 4,
           "kind_type": "BTF_KIND_INT",
           "name":"",
-          "size":4,
-          "bits_offset":0,
+          "size_in_bytes":4,
+          "offset_from_start_in_bits":0,
+          "field_width_in_bits":32,
           "is_signed":1,
           "is_char":0,
           "is_bool":0
@@ -90,11 +92,11 @@
               "id": 8,
               "kind_type": "BTF_KIND_STRUCT",
               "name":"bpf_map",
-              "size":28,
+              "size_in_bytes":28,
               "members":[
                 {
                   "name":"type",
-                  "offset":0,
+                  "offset_from_start_in_bits":0,
                   "type":{
                     "id": 9,
                     "kind_type": "BTF_KIND_TYPEDEF",
@@ -103,8 +105,9 @@
                       "id": 10,
                       "kind_type": "BTF_KIND_INT",
                       "name":"",
-                      "size":4,
-                      "bits_offset":0,
+                      "size_in_bytes":4,
+                      "offset_from_start_in_bits":0,
+                      "field_width_in_bits":32,
                       "is_signed":0,
                       "is_char":0,
                       "is_bool":0
@@ -113,7 +116,7 @@
                 },
                 {
                   "name":"key_size",
-                  "offset":32,
+                  "offset_from_start_in_bits":32,
                   "type":{
                     "id": 9,
                     "kind_type": "BTF_KIND_TYPEDEF",
@@ -122,8 +125,9 @@
                       "id": 10,
                       "kind_type": "BTF_KIND_INT",
                       "name":"",
-                      "size":4,
-                      "bits_offset":0,
+                      "size_in_bytes":4,
+                      "offset_from_start_in_bits":0,
+                      "field_width_in_bits":32,
                       "is_signed":0,
                       "is_char":0,
                       "is_bool":0
@@ -132,7 +136,7 @@
                 },
                 {
                   "name":"value_size",
-                  "offset":64,
+                  "offset_from_start_in_bits":64,
                   "type":{
                     "id": 9,
                     "kind_type": "BTF_KIND_TYPEDEF",
@@ -141,8 +145,9 @@
                       "id": 10,
                       "kind_type": "BTF_KIND_INT",
                       "name":"",
-                      "size":4,
-                      "bits_offset":0,
+                      "size_in_bytes":4,
+                      "offset_from_start_in_bits":0,
+                      "field_width_in_bits":32,
                       "is_signed":0,
                       "is_char":0,
                       "is_bool":0
@@ -151,7 +156,7 @@
                 },
                 {
                   "name":"max_entries",
-                  "offset":96,
+                  "offset_from_start_in_bits":96,
                   "type":{
                     "id": 9,
                     "kind_type": "BTF_KIND_TYPEDEF",
@@ -160,8 +165,9 @@
                       "id": 10,
                       "kind_type": "BTF_KIND_INT",
                       "name":"",
-                      "size":4,
-                      "bits_offset":0,
+                      "size_in_bytes":4,
+                      "offset_from_start_in_bits":0,
+                      "field_width_in_bits":32,
                       "is_signed":0,
                       "is_char":0,
                       "is_bool":0
@@ -170,7 +176,7 @@
                 },
                 {
                   "name":"map_flags",
-                  "offset":128,
+                  "offset_from_start_in_bits":128,
                   "type":{
                     "id": 9,
                     "kind_type": "BTF_KIND_TYPEDEF",
@@ -179,8 +185,9 @@
                       "id": 10,
                       "kind_type": "BTF_KIND_INT",
                       "name":"",
-                      "size":4,
-                      "bits_offset":0,
+                      "size_in_bytes":4,
+                      "offset_from_start_in_bits":0,
+                      "field_width_in_bits":32,
                       "is_signed":0,
                       "is_char":0,
                       "is_bool":0
@@ -189,7 +196,7 @@
                 },
                 {
                   "name":"inner_map_idx",
-                  "offset":160,
+                  "offset_from_start_in_bits":160,
                   "type":{
                     "id": 9,
                     "kind_type": "BTF_KIND_TYPEDEF",
@@ -198,8 +205,9 @@
                       "id": 10,
                       "kind_type": "BTF_KIND_INT",
                       "name":"",
-                      "size":4,
-                      "bits_offset":0,
+                      "size_in_bytes":4,
+                      "offset_from_start_in_bits":0,
+                      "field_width_in_bits":32,
                       "is_signed":0,
                       "is_char":0,
                       "is_bool":0
@@ -208,7 +216,7 @@
                 },
                 {
                   "name":"numa_node",
-                  "offset":192,
+                  "offset_from_start_in_bits":192,
                   "type":{
                     "id": 9,
                     "kind_type": "BTF_KIND_TYPEDEF",
@@ -217,8 +225,9 @@
                       "id": 10,
                       "kind_type": "BTF_KIND_INT",
                       "name":"",
-                      "size":4,
-                      "bits_offset":0,
+                      "size_in_bytes":4,
+                      "offset_from_start_in_bits":0,
+                      "field_width_in_bits":32,
                       "is_signed":0,
                       "is_char":0,
                       "is_bool":0

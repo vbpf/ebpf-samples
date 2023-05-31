@@ -21,11 +21,11 @@
                 "id": 2,
                 "kind_type": "BTF_KIND_STRUCT",
                 "name":"sk_buff",
-                "size":84,
+                "size_in_bytes":84,
                 "members":[
                   {
                     "name":"_",
-                    "offset":0,
+                    "offset_from_start_in_bits":0,
                     "type":{
                       "id": 5,
                       "kind_type": "BTF_KIND_ARRAY",
@@ -37,8 +37,9 @@
                           "id": 4,
                           "kind_type": "BTF_KIND_INT",
                           "name":"",
-                          "size":4,
-                          "bits_offset":0,
+                          "size_in_bytes":4,
+                          "offset_from_start_in_bits":0,
+                          "field_width_in_bits":32,
                           "is_signed":0,
                           "is_char":0,
                           "is_bool":0
@@ -48,18 +49,19 @@
                         "id": 6,
                         "kind_type": "BTF_KIND_INT",
                         "name":"",
-                        "size":4,
-                        "bits_offset":0,
+                        "size_in_bytes":4,
+                        "offset_from_start_in_bits":0,
+                        "field_width_in_bits":32,
                         "is_signed":0,
                         "is_char":0,
                         "is_bool":0
                       },
-                      "nelems":19
+                      "count_of_elements":19
                     }
                   },
                   {
                     "name":"data",
-                    "offset":608,
+                    "offset_from_start_in_bits":608,
                     "type":{
                       "id": 3,
                       "kind_type": "BTF_KIND_TYPEDEF",
@@ -68,8 +70,9 @@
                         "id": 4,
                         "kind_type": "BTF_KIND_INT",
                         "name":"",
-                        "size":4,
-                        "bits_offset":0,
+                        "size_in_bytes":4,
+                        "offset_from_start_in_bits":0,
+                        "field_width_in_bits":32,
                         "is_signed":0,
                         "is_char":0,
                         "is_bool":0
@@ -78,7 +81,7 @@
                   },
                   {
                     "name":"data_end",
-                    "offset":640,
+                    "offset_from_start_in_bits":640,
                     "type":{
                       "id": 3,
                       "kind_type": "BTF_KIND_TYPEDEF",
@@ -87,8 +90,9 @@
                         "id": 4,
                         "kind_type": "BTF_KIND_INT",
                         "name":"",
-                        "size":4,
-                        "bits_offset":0,
+                        "size_in_bytes":4,
+                        "offset_from_start_in_bits":0,
+                        "field_width_in_bits":32,
                         "is_signed":0,
                         "is_char":0,
                         "is_bool":0
@@ -104,8 +108,9 @@
           "id": 8,
           "kind_type": "BTF_KIND_INT",
           "name":"",
-          "size":4,
-          "bits_offset":0,
+          "size_in_bytes":4,
+          "offset_from_start_in_bits":0,
+          "field_width_in_bits":32,
           "is_signed":1,
           "is_char":0,
           "is_bool":0

@@ -1,13 +1,9 @@
 {
   "btf_kinds":[
     {
-      "id": 0,
-      "kind_type": "BTF_KIND_VOID"
-    },
-    {
       "id": 5,
       "kind_type": "BTF_KIND_FUNC",
-      "name":"caller",
+      "name":"func",
       "type":{
         "id": 3,
         "kind_type": "BTF_KIND_FUNC_PROTO",
@@ -20,7 +16,7 @@
               "type":{
                 "id": 2,
                 "kind_type": "BTF_KIND_FWD",
-                "name":"xdp_md",
+                "name":"ctx",
                 "is_struct":0
               }
             }
@@ -40,24 +36,210 @@
       }
     },
     {
-      "id": 7,
+      "id": 14,
       "kind_type": "BTF_KIND_FUNC",
-      "name":"callee",
+      "name":"bpf_map_update_elem",
       "type":{
         "id": 6,
         "kind_type": "BTF_KIND_FUNC_PROTO",
         "parameters":[
           {
-            "name":"ctx",
+            "name":"",
             "type":{
-              "id": 1,
+              "id": 7,
               "kind_type": "BTF_KIND_PTR",
               "type":{
-                "id": 2,
-                "kind_type": "BTF_KIND_FWD",
-                "name":"xdp_md",
-                "is_struct":0
+                "id": 8,
+                "kind_type": "BTF_KIND_STRUCT",
+                "name":"bpf_map",
+                "size_in_bytes":28,
+                "members":[
+                  {
+                    "name":"type",
+                    "offset_from_start_in_bits":0,
+                    "type":{
+                      "id": 9,
+                      "kind_type": "BTF_KIND_TYPEDEF",
+                      "name":"uint32_t",
+                      "type":{
+                        "id": 10,
+                        "kind_type": "BTF_KIND_INT",
+                        "name":"",
+                        "size_in_bytes":4,
+                        "offset_from_start_in_bits":0,
+                        "field_width_in_bits":32,
+                        "is_signed":0,
+                        "is_char":0,
+                        "is_bool":0
+                      }
+                    }
+                  },
+                  {
+                    "name":"key_size",
+                    "offset_from_start_in_bits":32,
+                    "type":{
+                      "id": 9,
+                      "kind_type": "BTF_KIND_TYPEDEF",
+                      "name":"uint32_t",
+                      "type":{
+                        "id": 10,
+                        "kind_type": "BTF_KIND_INT",
+                        "name":"",
+                        "size_in_bytes":4,
+                        "offset_from_start_in_bits":0,
+                        "field_width_in_bits":32,
+                        "is_signed":0,
+                        "is_char":0,
+                        "is_bool":0
+                      }
+                    }
+                  },
+                  {
+                    "name":"value_size",
+                    "offset_from_start_in_bits":64,
+                    "type":{
+                      "id": 9,
+                      "kind_type": "BTF_KIND_TYPEDEF",
+                      "name":"uint32_t",
+                      "type":{
+                        "id": 10,
+                        "kind_type": "BTF_KIND_INT",
+                        "name":"",
+                        "size_in_bytes":4,
+                        "offset_from_start_in_bits":0,
+                        "field_width_in_bits":32,
+                        "is_signed":0,
+                        "is_char":0,
+                        "is_bool":0
+                      }
+                    }
+                  },
+                  {
+                    "name":"max_entries",
+                    "offset_from_start_in_bits":96,
+                    "type":{
+                      "id": 9,
+                      "kind_type": "BTF_KIND_TYPEDEF",
+                      "name":"uint32_t",
+                      "type":{
+                        "id": 10,
+                        "kind_type": "BTF_KIND_INT",
+                        "name":"",
+                        "size_in_bytes":4,
+                        "offset_from_start_in_bits":0,
+                        "field_width_in_bits":32,
+                        "is_signed":0,
+                        "is_char":0,
+                        "is_bool":0
+                      }
+                    }
+                  },
+                  {
+                    "name":"map_flags",
+                    "offset_from_start_in_bits":128,
+                    "type":{
+                      "id": 9,
+                      "kind_type": "BTF_KIND_TYPEDEF",
+                      "name":"uint32_t",
+                      "type":{
+                        "id": 10,
+                        "kind_type": "BTF_KIND_INT",
+                        "name":"",
+                        "size_in_bytes":4,
+                        "offset_from_start_in_bits":0,
+                        "field_width_in_bits":32,
+                        "is_signed":0,
+                        "is_char":0,
+                        "is_bool":0
+                      }
+                    }
+                  },
+                  {
+                    "name":"inner_map_idx",
+                    "offset_from_start_in_bits":160,
+                    "type":{
+                      "id": 9,
+                      "kind_type": "BTF_KIND_TYPEDEF",
+                      "name":"uint32_t",
+                      "type":{
+                        "id": 10,
+                        "kind_type": "BTF_KIND_INT",
+                        "name":"",
+                        "size_in_bytes":4,
+                        "offset_from_start_in_bits":0,
+                        "field_width_in_bits":32,
+                        "is_signed":0,
+                        "is_char":0,
+                        "is_bool":0
+                      }
+                    }
+                  },
+                  {
+                    "name":"numa_node",
+                    "offset_from_start_in_bits":192,
+                    "type":{
+                      "id": 9,
+                      "kind_type": "BTF_KIND_TYPEDEF",
+                      "name":"uint32_t",
+                      "type":{
+                        "id": 10,
+                        "kind_type": "BTF_KIND_INT",
+                        "name":"",
+                        "size_in_bytes":4,
+                        "offset_from_start_in_bits":0,
+                        "field_width_in_bits":32,
+                        "is_signed":0,
+                        "is_char":0,
+                        "is_bool":0
+                      }
+                    }
+                  }
+                ]
               }
+            }
+          },
+          {
+            "name":"",
+            "type":{
+              "id": 11,
+              "kind_type": "BTF_KIND_PTR",
+              "type":{
+                "id": 12,
+                "kind_type": "BTF_KIND_CONST",
+                "type":{
+                  "id": 0,
+                  "kind_type": "BTF_KIND_VOID"
+                }
+              }
+            }
+          },
+          {
+            "name":"",
+            "type":{
+              "id": 11,
+              "kind_type": "BTF_KIND_PTR",
+              "type":{
+                "id": 12,
+                "kind_type": "BTF_KIND_CONST",
+                "type":{
+                  "id": 0,
+                  "kind_type": "BTF_KIND_VOID"
+                }
+              }
+            }
+          },
+          {
+            "name":"",
+            "type":{
+              "id": 13,
+              "kind_type": "BTF_KIND_INT",
+              "name":"",
+              "size_in_bytes":8,
+              "offset_from_start_in_bits":0,
+              "field_width_in_bits":64,
+              "is_signed":0,
+              "is_char":0,
+              "is_bool":0
             }
           }
         ],
@@ -75,7 +257,7 @@
       }
     },
     {
-      "id": 12,
+      "id": 16,
       "kind_type": "BTF_KIND_DATASEC",
       "name":"",
       "size":0,
@@ -84,7 +266,7 @@
           "offset":0,
           "size":28,
           "type":{
-            "id": 11,
+            "id": 15,
             "kind_type": "BTF_KIND_VAR",
             "name":"map",
             "linkage":1,

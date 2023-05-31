@@ -24,8 +24,9 @@
           "id": 3,
           "kind_type": "BTF_KIND_INT",
           "name":"",
-          "size":4,
-          "bits_offset":0,
+          "size_in_bytes":4,
+          "offset_from_start_in_bits":0,
+          "field_width_in_bits":32,
           "is_signed":1,
           "is_char":0,
           "is_bool":0

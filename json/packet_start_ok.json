@@ -21,11 +21,11 @@
                 "id": 2,
                 "kind_type": "BTF_KIND_STRUCT",
                 "name":"xdp_md",
-                "size":24,
+                "size_in_bytes":24,
                 "members":[
                   {
                     "name":"data",
-                    "offset":0,
+                    "offset_from_start_in_bits":0,
                     "type":{
                       "id": 3,
                       "kind_type": "BTF_KIND_TYPEDEF",
@@ -34,8 +34,9 @@
                         "id": 4,
                         "kind_type": "BTF_KIND_INT",
                         "name":"",
-                        "size":4,
-                        "bits_offset":0,
+                        "size_in_bytes":4,
+                        "offset_from_start_in_bits":0,
+                        "field_width_in_bits":32,
                         "is_signed":0,
                         "is_char":0,
                         "is_bool":0
@@ -44,7 +45,7 @@
                   },
                   {
                     "name":"data_end",
-                    "offset":32,
+                    "offset_from_start_in_bits":32,
                     "type":{
                       "id": 3,
                       "kind_type": "BTF_KIND_TYPEDEF",
@@ -53,8 +54,9 @@
                         "id": 4,
                         "kind_type": "BTF_KIND_INT",
                         "name":"",
-                        "size":4,
-                        "bits_offset":0,
+                        "size_in_bytes":4,
+                        "offset_from_start_in_bits":0,
+                        "field_width_in_bits":32,
                         "is_signed":0,
                         "is_char":0,
                         "is_bool":0
@@ -63,7 +65,7 @@
                   },
                   {
                     "name":"data_meta",
-                    "offset":64,
+                    "offset_from_start_in_bits":64,
                     "type":{
                       "id": 3,
                       "kind_type": "BTF_KIND_TYPEDEF",
@@ -72,8 +74,9 @@
                         "id": 4,
                         "kind_type": "BTF_KIND_INT",
                         "name":"",
-                        "size":4,
-                        "bits_offset":0,
+                        "size_in_bytes":4,
+                        "offset_from_start_in_bits":0,
+                        "field_width_in_bits":32,
                         "is_signed":0,
                         "is_char":0,
                         "is_bool":0
@@ -82,7 +85,7 @@
                   },
                   {
                     "name":"_1",
-                    "offset":96,
+                    "offset_from_start_in_bits":96,
                     "type":{
                       "id": 3,
                       "kind_type": "BTF_KIND_TYPEDEF",
@@ -91,8 +94,9 @@
                         "id": 4,
                         "kind_type": "BTF_KIND_INT",
                         "name":"",
-                        "size":4,
-                        "bits_offset":0,
+                        "size_in_bytes":4,
+                        "offset_from_start_in_bits":0,
+                        "field_width_in_bits":32,
                         "is_signed":0,
                         "is_char":0,
                         "is_bool":0
@@ -101,7 +105,7 @@
                   },
                   {
                     "name":"_2",
-                    "offset":128,
+                    "offset_from_start_in_bits":128,
                     "type":{
                       "id": 3,
                       "kind_type": "BTF_KIND_TYPEDEF",
@@ -110,8 +114,9 @@
                         "id": 4,
                         "kind_type": "BTF_KIND_INT",
                         "name":"",
-                        "size":4,
-                        "bits_offset":0,
+                        "size_in_bytes":4,
+                        "offset_from_start_in_bits":0,
+                        "field_width_in_bits":32,
                         "is_signed":0,
                         "is_char":0,
                         "is_bool":0
@@ -120,7 +125,7 @@
                   },
                   {
                     "name":"_3",
-                    "offset":160,
+                    "offset_from_start_in_bits":160,
                     "type":{
                       "id": 3,
                       "kind_type": "BTF_KIND_TYPEDEF",
@@ -129,8 +134,9 @@
                         "id": 4,
                         "kind_type": "BTF_KIND_INT",
                         "name":"",
-                        "size":4,
-                        "bits_offset":0,
+                        "size_in_bytes":4,
+                        "offset_from_start_in_bits":0,
+                        "field_width_in_bits":32,
                         "is_signed":0,
                         "is_char":0,
                         "is_bool":0
@@ -146,8 +152,9 @@
           "id": 6,
           "kind_type": "BTF_KIND_INT",
           "name":"",
-          "size":4,
-          "bits_offset":0,
+          "size_in_bytes":4,
+          "offset_from_start_in_bits":0,
+          "field_width_in_bits":32,
           "is_signed":1,
           "is_char":0,
           "is_bool":0

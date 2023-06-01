@@ -4,6 +4,7 @@
       "id": 4,
       "kind_type": "BTF_KIND_FUNC",
       "name":"test_repro",
+      "linkage":"BTF_FUNC_GLOBAL",
       "type":{
         "id": 2,
         "kind_type": "BTF_KIND_FUNC_PROTO",
@@ -23,7 +24,7 @@
         "return_type":{
           "id": 3,
           "kind_type": "BTF_KIND_INT",
-          "name":"",
+          "name":"int",
           "size_in_bytes":4,
           "offset_from_start_in_bits":0,
           "field_width_in_bits":32,
@@ -36,9 +37,9 @@
     {
       "id": 10,
       "kind_type": "BTF_KIND_DATASEC",
-      "name":"",
+      "name":".data",
       "size":0,
-      "data":[
+      "members":[
         {
           "offset":0,
           "size":28,
@@ -46,7 +47,7 @@
             "id": 9,
             "kind_type": "BTF_KIND_VAR",
             "name":"test_map",
-            "linkage":1,
+            "linkage":"BTF_LINKAGE_STATIC",
             "type":{
               "id": 5,
               "kind_type": "BTF_KIND_TYPEDEF",
@@ -67,7 +68,7 @@
                       "type":{
                         "id": 8,
                         "kind_type": "BTF_KIND_INT",
-                        "name":"",
+                        "name":"unsigned int",
                         "size_in_bytes":4,
                         "offset_from_start_in_bits":0,
                         "field_width_in_bits":32,
@@ -87,7 +88,7 @@
                       "type":{
                         "id": 8,
                         "kind_type": "BTF_KIND_INT",
-                        "name":"",
+                        "name":"unsigned int",
                         "size_in_bytes":4,
                         "offset_from_start_in_bits":0,
                         "field_width_in_bits":32,
@@ -107,7 +108,7 @@
                       "type":{
                         "id": 8,
                         "kind_type": "BTF_KIND_INT",
-                        "name":"",
+                        "name":"unsigned int",
                         "size_in_bytes":4,
                         "offset_from_start_in_bits":0,
                         "field_width_in_bits":32,
@@ -127,7 +128,7 @@
                       "type":{
                         "id": 8,
                         "kind_type": "BTF_KIND_INT",
-                        "name":"",
+                        "name":"unsigned int",
                         "size_in_bytes":4,
                         "offset_from_start_in_bits":0,
                         "field_width_in_bits":32,
@@ -147,7 +148,7 @@
                       "type":{
                         "id": 8,
                         "kind_type": "BTF_KIND_INT",
-                        "name":"",
+                        "name":"unsigned int",
                         "size_in_bytes":4,
                         "offset_from_start_in_bits":0,
                         "field_width_in_bits":32,
@@ -167,7 +168,7 @@
                       "type":{
                         "id": 8,
                         "kind_type": "BTF_KIND_INT",
-                        "name":"",
+                        "name":"unsigned int",
                         "size_in_bytes":4,
                         "offset_from_start_in_bits":0,
                         "field_width_in_bits":32,
@@ -187,7 +188,7 @@
                       "type":{
                         "id": 8,
                         "kind_type": "BTF_KIND_INT",
-                        "name":"",
+                        "name":"unsigned int",
                         "size_in_bytes":4,
                         "offset_from_start_in_bits":0,
                         "field_width_in_bits":32,

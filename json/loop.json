@@ -4,6 +4,7 @@
       "id": 8,
       "kind_type": "BTF_KIND_FUNC",
       "name":"foo",
+      "linkage":"BTF_FUNC_GLOBAL",
       "type":{
         "id": 6,
         "kind_type": "BTF_KIND_FUNC_PROTO",
@@ -32,7 +33,7 @@
                         "type":{
                           "id": 5,
                           "kind_type": "BTF_KIND_INT",
-                          "name":"",
+                          "name":"unsigned char",
                           "size_in_bytes":1,
                           "offset_from_start_in_bits":0,
                           "field_width_in_bits":8,
@@ -56,7 +57,7 @@
                         "type":{
                           "id": 5,
                           "kind_type": "BTF_KIND_INT",
-                          "name":"",
+                          "name":"unsigned char",
                           "size_in_bytes":1,
                           "offset_from_start_in_bits":0,
                           "field_width_in_bits":8,
@@ -75,7 +76,7 @@
         "return_type":{
           "id": 7,
           "kind_type": "BTF_KIND_INT",
-          "name":"",
+          "name":"int",
           "size_in_bytes":4,
           "offset_from_start_in_bits":0,
           "field_width_in_bits":32,

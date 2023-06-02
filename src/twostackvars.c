@@ -1,11 +1,8 @@
 // Copyright (c) Prevail Verifier contributors.
 // SPDX-License-Identifier: MIT
-typedef unsigned char uint8_t;
-typedef unsigned int uint32_t;
+#include "bpf.h"
 
 struct ctx;
-
-static int (*get_prandom_u32)() = (void*)7;
 
 int func(struct ctx* ctx)
 {

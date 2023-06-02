@@ -1,36 +1,23 @@
-typedef unsigned int uint32_t;
-typedef unsigned long uint64_t;
+// Copyright (c) Prevail Verifier contributors.
+// SPDX-License-Identifier: MIT
 
-struct ebpf_map {
-    uint32_t type;
-    uint32_t key_size;
-    uint32_t value_size;
-    uint32_t max_entries;
-    uint32_t map_flags;
-    uint32_t inner_map_idx;
-    uint32_t numa_node;
-};
+#include "bpf.h"
 
-#define BPF_MAP_TYPE_ARRAY 2
-#define BPF_MAP_TYPE_ARRAY_OF_MAPS 12
+__attribute__((section(".maps"), used))
+struct {
+    __uint(type, BPF_MAP_TYPE_ARRAY);
+    __type(key, uint32_t);
+    __type(value, uint32_t);
+    __uint(max_entries, 1);
+} inner_map;
 
-static void* (*bpf_map_lookup_elem)(struct ebpf_map* map, const void* key) = (void*) 1;
-
-__attribute__((section("maps"), used))
-struct ebpf_map array_of_maps =
-    {.type = BPF_MAP_TYPE_ARRAY_OF_MAPS,
-     .key_size = sizeof(uint32_t),
-     .value_size = sizeof(uint32_t),
-     .max_entries = 1,
-     .inner_map_idx = 1}; // (uint32_t)&inner_map};
-
-__attribute__((section("maps"), used))
-struct ebpf_map inner_map =
-    {.type = BPF_MAP_TYPE_ARRAY,
-     .key_size = sizeof(uint32_t),
-     .value_size = sizeof(uint64_t),
-     .max_entries = 1};
-
+__attribute__((section(".maps"), used))
+struct {
+    __uint(type, BPF_MAP_TYPE_ARRAY_OF_MAPS);
+    __uint(max_entries, 1);
+    __type(key, uint32_t);
+    __array(values, inner_map);
+} array_of_maps;
 
 int func(void* ctx) {
     uint32_t outer_key = 0;

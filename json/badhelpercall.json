@@ -1,26 +1,24 @@
 {
-  "btf_kinds":[
+  "btf_kinds": [
     {
       "id": 3,
       "kind_type": "BTF_KIND_FUNC",
-      "name":"func",
-      "linkage":"BTF_FUNC_GLOBAL",
-      "type":{
+      "name": "func",
+      "linkage": "BTF_FUNC_GLOBAL",
+      "type": {
         "id": 1,
         "kind_type": "BTF_KIND_FUNC_PROTO",
-        "parameters":[
-          
-        ],
-        "return_type":{
+        "parameters": [],
+        "return_type": {
           "id": 2,
           "kind_type": "BTF_KIND_INT",
-          "name":"int",
-          "size_in_bytes":4,
-          "offset_from_start_in_bits":0,
-          "field_width_in_bits":32,
-          "is_signed":1,
-          "is_char":0,
-          "is_bool":0
+          "name": "int",
+          "size_in_bytes": 4,
+          "offset_from_start_in_bits": 0,
+          "field_width_in_bits": 32,
+          "is_signed": true,
+          "is_char": false,
+          "is_bool": false
         }
       }
     }

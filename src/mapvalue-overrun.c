@@ -1,27 +1,14 @@
 // Copyright (c) Prevail Verifier contributors.
 // SPDX-License-Identifier: MIT
-typedef unsigned int uint32_t;
-typedef unsigned long uint64_t;
+#include "bpf.h"
 
-typedef struct bpf_map_def {
-    uint32_t type;
-    uint32_t key_size;
-    uint32_t value_size;
-    uint32_t max_entries;
-    uint32_t map_flags;
-    uint32_t inner_map_idx;
-    uint32_t numa_node;
-} bpf_map_def_t;
-#define BPF_MAP_TYPE_ARRAY 2
-
-__attribute__((section("maps"), used))
-bpf_map_def_t map =
-    {.type = BPF_MAP_TYPE_ARRAY,
-     .key_size = sizeof(int),
-     .value_size = sizeof(uint32_t),
-     .max_entries = 1};
-
-static void* (*bpf_map_lookup_elem)(bpf_map_def_t* map, void* key) = (void*) 1;
+__attribute__((section(".maps"), used))
+struct {
+    __uint(type, BPF_MAP_TYPE_ARRAY);
+    __type(key, int);
+    __type(value, uint32_t);
+    __uint(max_entries, 1);
+} map;
 
 int func(void* ctx)
 {

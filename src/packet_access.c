@@ -1,18 +1,6 @@
 // Copyright (c) Prevail Verifier contributors.
 // SPDX-License-Identifier: MIT
-typedef unsigned int uint32_t;
-typedef unsigned long uint64_t;
-
-struct xdp_md {
-    uint32_t data;
-    uint32_t data_end;
-    uint32_t data_meta;
-    uint32_t _1;
-    uint32_t _2;
-    uint32_t _3;
-};
-
-static int (*get_prandom_u32)() = (void*)7;
+#include "bpf.h"
 
 __attribute__((section("xdp"), used))
 int test_packet_access(struct xdp_md* ctx)

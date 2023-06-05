@@ -14,7 +14,7 @@ struct ctx;
 
 int func(struct ctx* ctx)
 {
-    uint32_t rand32 = get_prandom_u32();
+    uint32_t rand32 = bpf_get_prandom_u32();
     uint8_t stack_buffer[256] = { 0 };
     *(uint32_t*)stack_buffer = rand32;
 

@@ -3,7 +3,7 @@
 #include "bpf.h"
 
 __attribute__((section("socket_filter"), used))
-int reallocate_invalidates(struct sk_buff* ctx)
+int reallocate_invalidates(struct __sk_buff* ctx)
 {
     void *data_end = (void *)(long)ctx->data_end;
     void *data = (void *)(long)ctx->data;

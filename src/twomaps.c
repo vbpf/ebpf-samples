@@ -26,7 +26,7 @@ struct ctx;
 
 int func(struct ctx* ctx)
 {
-    uint32_t rand32 = get_prandom_u32();
+    uint32_t rand32 = bpf_get_prandom_u32();
     struct ebpf_map* map = (rand32 & 1) ? &map1 : &map2;
 
     int key = 10;

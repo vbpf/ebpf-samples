@@ -1,13 +1,13 @@
 // Copyright (c) Prevail Verifier contributors.
 // SPDX-License-Identifier: MIT
 
-static int (*get_prandom_u32)() = (void*)7;
+#include "bpf.h"
 
 struct ctx;
 
 int func(struct ctx* ctx)
 {
-   int rand32 = get_prandom_u32();
+   int rand32 = bpf_get_prandom_u32();
 
     if (rand32 & 0x01) {
         asm volatile("r0 = le64 r0\nexit");

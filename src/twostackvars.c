@@ -9,13 +9,13 @@ int func(struct ctx* ctx)
     int stack_buffer[16];
     int *ptr = (int*)0;
 
-    uint32_t rand32 = get_prandom_u32();
+    uint32_t rand32 = bpf_get_prandom_u32();
     if (rand32 & 1) {
         // In this path we want ptr to point to one section
         // of stack space that is known to be a number, and have
         // the rest of the stack be unknown.
         for (int i = 0; i < 8; i++) {
-            stack_buffer[i] = get_prandom_u32();
+            stack_buffer[i] = bpf_get_prandom_u32();
         }
         int index = rand32 % 8;
         ptr = &stack_buffer[index];
@@ -29,7 +29,7 @@ int func(struct ctx* ctx)
         // the rest of the stack be unknown.
         int* stack_buffer2 = &stack_buffer[8];
         for (int i = 0; i < 8; i++) {
-            stack_buffer2[i] = get_prandom_u32();
+            stack_buffer2[i] = bpf_get_prandom_u32();
         }
         ptr = &stack_buffer2[rand32 % 8];
     }

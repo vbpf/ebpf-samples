@@ -26,7 +26,7 @@
                     "type": {
                       "id": 3,
                       "kind_type": "BTF_KIND_TYPEDEF",
-                      "name": "uint32_t",
+                      "name": "__u32",
                       "type": {
                         "id": 4,
                         "kind_type": "BTF_KIND_INT",
@@ -46,7 +46,7 @@
                     "type": {
                       "id": 3,
                       "kind_type": "BTF_KIND_TYPEDEF",
-                      "name": "uint32_t",
+                      "name": "__u32",
                       "type": {
                         "id": 4,
                         "kind_type": "BTF_KIND_INT",
@@ -66,7 +66,7 @@
                     "type": {
                       "id": 3,
                       "kind_type": "BTF_KIND_TYPEDEF",
-                      "name": "uint32_t",
+                      "name": "__u32",
                       "type": {
                         "id": 4,
                         "kind_type": "BTF_KIND_INT",
@@ -81,12 +81,12 @@
                     }
                   },
                   {
-                    "name": "_1",
+                    "name": "ingress_ifindex",
                     "offset_from_start_in_bits": 96,
                     "type": {
                       "id": 3,
                       "kind_type": "BTF_KIND_TYPEDEF",
-                      "name": "uint32_t",
+                      "name": "__u32",
                       "type": {
                         "id": 4,
                         "kind_type": "BTF_KIND_INT",
@@ -101,12 +101,12 @@
                     }
                   },
                   {
-                    "name": "_2",
+                    "name": "rx_queue_index",
                     "offset_from_start_in_bits": 128,
                     "type": {
                       "id": 3,
                       "kind_type": "BTF_KIND_TYPEDEF",
-                      "name": "uint32_t",
+                      "name": "__u32",
                       "type": {
                         "id": 4,
                         "kind_type": "BTF_KIND_INT",
@@ -121,12 +121,12 @@
                     }
                   },
                   {
-                    "name": "_3",
+                    "name": "egress_ifindex",
                     "offset_from_start_in_bits": 160,
                     "type": {
                       "id": 3,
                       "kind_type": "BTF_KIND_TYPEDEF",
-                      "name": "uint32_t",
+                      "name": "__u32",
                       "type": {
                         "id": 4,
                         "kind_type": "BTF_KIND_INT",

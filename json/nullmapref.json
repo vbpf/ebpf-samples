@@ -1,18 +1,18 @@
 {
   "btf_kinds": [
     {
-      "id": 12,
+      "id": 13,
       "kind_type": "BTF_KIND_FUNC",
       "name": "test_repro",
       "linkage": "BTF_FUNC_GLOBAL",
       "type": {
-        "id": 11,
+        "id": 12,
         "kind_type": "BTF_KIND_FUNC_PROTO",
         "parameters": [
           {
             "name": "ctx",
             "type": {
-              "id": 10,
+              "id": 11,
               "kind_type": "BTF_KIND_PTR",
               "type": {
                 "id": 0,
@@ -35,7 +35,7 @@
       }
     },
     {
-      "id": 13,
+      "id": 14,
       "kind_type": "BTF_KIND_DATASEC",
       "name": ".maps",
       "size": 0,
@@ -44,12 +44,12 @@
           "offset": 0,
           "size": 32,
           "type": {
-            "id": 9,
+            "id": 10,
             "kind_type": "BTF_KIND_VAR",
             "name": "test_map",
             "linkage": "BTF_LINKAGE_STATIC",
             "type": {
-              "id": 8,
+              "id": 9,
               "kind_type": "BTF_KIND_STRUCT",
               "size_in_bytes": 32,
               "members": [
@@ -100,14 +100,19 @@
                       "name": "uint32_t",
                       "type": {
                         "id": 7,
-                        "kind_type": "BTF_KIND_INT",
-                        "name": "unsigned int",
-                        "size_in_bytes": 4,
-                        "offset_from_start_in_bits": 0,
-                        "field_width_in_bits": 32,
-                        "is_signed": false,
-                        "is_char": false,
-                        "is_bool": false
+                        "kind_type": "BTF_KIND_TYPEDEF",
+                        "name": "__uint32_t",
+                        "type": {
+                          "id": 8,
+                          "kind_type": "BTF_KIND_INT",
+                          "name": "unsigned int",
+                          "size_in_bytes": 4,
+                          "offset_from_start_in_bits": 0,
+                          "field_width_in_bits": 32,
+                          "is_signed": false,
+                          "is_char": false,
+                          "is_bool": false
+                        }
                       }
                     }
                   }
@@ -124,14 +129,19 @@
                       "name": "uint32_t",
                       "type": {
                         "id": 7,
-                        "kind_type": "BTF_KIND_INT",
-                        "name": "unsigned int",
-                        "size_in_bytes": 4,
-                        "offset_from_start_in_bits": 0,
-                        "field_width_in_bits": 32,
-                        "is_signed": false,
-                        "is_char": false,
-                        "is_bool": false
+                        "kind_type": "BTF_KIND_TYPEDEF",
+                        "name": "__uint32_t",
+                        "type": {
+                          "id": 8,
+                          "kind_type": "BTF_KIND_INT",
+                          "name": "unsigned int",
+                          "size_in_bytes": 4,
+                          "offset_from_start_in_bits": 0,
+                          "field_width_in_bits": 32,
+                          "is_signed": false,
+                          "is_char": false,
+                          "is_bool": false
+                        }
                       }
                     }
                   }

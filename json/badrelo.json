@@ -37,7 +37,7 @@
       }
     },
     {
-      "id": 22,
+      "id": 24,
       "kind_type": "BTF_KIND_FUNC",
       "name": "ebpf_map_update_elem",
       "linkage": "BTF_FUNC_EXTERN",
@@ -92,14 +92,24 @@
             "name": "",
             "type": {
               "id": 21,
-              "kind_type": "BTF_KIND_INT",
-              "name": "long unsigned int",
-              "size_in_bytes": 8,
-              "offset_from_start_in_bits": 0,
-              "field_width_in_bits": 64,
-              "is_signed": false,
-              "is_char": false,
-              "is_bool": false
+              "kind_type": "BTF_KIND_TYPEDEF",
+              "name": "uint64_t",
+              "type": {
+                "id": 22,
+                "kind_type": "BTF_KIND_TYPEDEF",
+                "name": "__uint64_t",
+                "type": {
+                  "id": 23,
+                  "kind_type": "BTF_KIND_INT",
+                  "name": "unsigned long long",
+                  "size_in_bytes": 8,
+                  "offset_from_start_in_bits": 0,
+                  "field_width_in_bits": 64,
+                  "is_signed": false,
+                  "is_char": false,
+                  "is_bool": false
+                }
+              }
             }
           }
         ],
@@ -117,7 +127,7 @@
       }
     },
     {
-      "id": 23,
+      "id": 25,
       "kind_type": "BTF_KIND_DATASEC",
       "name": ".maps",
       "size": 0,

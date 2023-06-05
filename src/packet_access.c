@@ -5,7 +5,7 @@
 __attribute__((section("xdp"), used))
 int test_packet_access(struct xdp_md* ctx)
 {
-    uint32_t rand32 = get_prandom_u32();
+    uint32_t rand32 = bpf_get_prandom_u32();
     void *data_end = (void *)(long)ctx->data_end;
     void *data = (void *)(long)ctx->data;
     int offset = (rand32 & 0x0F) * 4;

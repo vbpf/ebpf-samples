@@ -16,6 +16,7 @@ add_custom_target(samples ALL
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/mapunderflow.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/mapvalue-overrun.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/map_in_map.o
+                          ${CMAKE_CURRENT_SOURCE_DIR}/build/map_in_map_legacy.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/nullmapref.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/stackok.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/packet_access.o
@@ -80,6 +81,10 @@ add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/mapvalue-overrun.o
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/map_in_map.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/map_in_map.c
                    COMMAND clang -g -target bpf -Wall -O2 -c ${CMAKE_CURRENT_SOURCE_DIR}/src/map_in_map.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/map_in_map.o)
+
+add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/map_in_map_legacy.o
+                   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/map_in_map_legacy.c
+                   COMMAND clang -target bpf -Wall -O2 -c ${CMAKE_CURRENT_SOURCE_DIR}/src/map_in_map_legacy.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/map_in_map_legacy.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/nullmapref.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/nullmapref.c

@@ -17,7 +17,9 @@ struct {
     __uint(max_entries, 1);
     __type(key, uint32_t);
     __array(values, inner_map);
-} array_of_maps;
+} array_of_maps = {
+    .values = { &inner_map },
+};
 
 int func(void* ctx) {
     uint32_t outer_key = 0;

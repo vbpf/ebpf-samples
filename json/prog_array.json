@@ -1,0 +1,345 @@
+{
+  "btf_kinds": [
+    {
+      "id": 17,
+      "kind_type": "BTF_KIND_FUNCTION",
+      "name": "func0",
+      "linkage": "BTF_LINKAGE_GLOBAL",
+      "type": {
+        "id": 16,
+        "kind_type": "BTF_KIND_FUNCTION_PROTOTYPE",
+        "parameters": [
+          {
+            "name": "ctx",
+            "type": {
+              "id": 12,
+              "kind_type": "BTF_KIND_PTR",
+              "type": {
+                "id": 0,
+                "kind_type": "BTF_KIND_VOID"
+              }
+            }
+          }
+        ],
+        "return_type": {
+          "id": 2,
+          "kind_type": "BTF_KIND_INT",
+          "name": "int",
+          "size_in_bytes": 4,
+          "offset_from_start_in_bits": 0,
+          "field_width_in_bits": 32,
+          "is_signed": true,
+          "is_char": false,
+          "is_bool": false
+        }
+      }
+    },
+    {
+      "id": 19,
+      "kind_type": "BTF_KIND_FUNCTION",
+      "name": "func1",
+      "linkage": "BTF_LINKAGE_GLOBAL",
+      "type": {
+        "id": 18,
+        "kind_type": "BTF_KIND_FUNCTION_PROTOTYPE",
+        "parameters": [
+          {
+            "name": "ctx",
+            "type": {
+              "id": 12,
+              "kind_type": "BTF_KIND_PTR",
+              "type": {
+                "id": 0,
+                "kind_type": "BTF_KIND_VOID"
+              }
+            }
+          }
+        ],
+        "return_type": {
+          "id": 2,
+          "kind_type": "BTF_KIND_INT",
+          "name": "int",
+          "size_in_bytes": 4,
+          "offset_from_start_in_bits": 0,
+          "field_width_in_bits": 32,
+          "is_signed": true,
+          "is_char": false,
+          "is_bool": false
+        }
+      }
+    },
+    {
+      "id": 21,
+      "kind_type": "BTF_KIND_FUNCTION",
+      "name": "func2",
+      "linkage": "BTF_LINKAGE_GLOBAL",
+      "type": {
+        "id": 20,
+        "kind_type": "BTF_KIND_FUNCTION_PROTOTYPE",
+        "parameters": [
+          {
+            "name": "ctx",
+            "type": {
+              "id": 12,
+              "kind_type": "BTF_KIND_PTR",
+              "type": {
+                "id": 0,
+                "kind_type": "BTF_KIND_VOID"
+              }
+            }
+          }
+        ],
+        "return_type": {
+          "id": 2,
+          "kind_type": "BTF_KIND_INT",
+          "name": "int",
+          "size_in_bytes": 4,
+          "offset_from_start_in_bits": 0,
+          "field_width_in_bits": 32,
+          "is_signed": true,
+          "is_char": false,
+          "is_bool": false
+        }
+      }
+    },
+    {
+      "id": 23,
+      "kind_type": "BTF_KIND_FUNCTION",
+      "name": "func3",
+      "linkage": "BTF_LINKAGE_GLOBAL",
+      "type": {
+        "id": 22,
+        "kind_type": "BTF_KIND_FUNCTION_PROTOTYPE",
+        "parameters": [
+          {
+            "name": "ctx",
+            "type": {
+              "id": 12,
+              "kind_type": "BTF_KIND_PTR",
+              "type": {
+                "id": 0,
+                "kind_type": "BTF_KIND_VOID"
+              }
+            }
+          }
+        ],
+        "return_type": {
+          "id": 2,
+          "kind_type": "BTF_KIND_INT",
+          "name": "int",
+          "size_in_bytes": 4,
+          "offset_from_start_in_bits": 0,
+          "field_width_in_bits": 32,
+          "is_signed": true,
+          "is_char": false,
+          "is_bool": false
+        }
+      }
+    },
+    {
+      "id": 25,
+      "kind_type": "BTF_KIND_FUNCTION",
+      "name": "func",
+      "linkage": "BTF_LINKAGE_GLOBAL",
+      "type": {
+        "id": 24,
+        "kind_type": "BTF_KIND_FUNCTION_PROTOTYPE",
+        "parameters": [
+          {
+            "name": "ctx",
+            "type": {
+              "id": 12,
+              "kind_type": "BTF_KIND_PTR",
+              "type": {
+                "id": 0,
+                "kind_type": "BTF_KIND_VOID"
+              }
+            }
+          }
+        ],
+        "return_type": {
+          "id": 2,
+          "kind_type": "BTF_KIND_INT",
+          "name": "int",
+          "size_in_bytes": 4,
+          "offset_from_start_in_bits": 0,
+          "field_width_in_bits": 32,
+          "is_signed": true,
+          "is_char": false,
+          "is_bool": false
+        }
+      }
+    },
+    {
+      "id": 26,
+      "kind_type": "BTF_KIND_DATA_SECTION",
+      "name": ".maps",
+      "size": 0,
+      "members": [
+        {
+          "offset": 0,
+          "size": 56,
+          "type": {
+            "id": 15,
+            "kind_type": "BTF_KIND_VAR",
+            "name": "prog_array_map",
+            "linkage": "BTF_LINKAGE_GLOBAL",
+            "type": {
+              "id": 14,
+              "kind_type": "BTF_KIND_STRUCT",
+              "size_in_bytes": 24,
+              "members": [
+                {
+                  "name": "type",
+                  "offset_from_start_in_bits": 0,
+                  "type": {
+                    "id": 1,
+                    "kind_type": "BTF_KIND_PTR",
+                    "type": {
+                      "id": 3,
+                      "kind_type": "BTF_KIND_ARRAY",
+                      "count_of_elements": 3,
+                      "element_type": {
+                        "id": 2,
+                        "kind_type": "BTF_KIND_INT",
+                        "name": "int",
+                        "size_in_bytes": 4,
+                        "offset_from_start_in_bits": 0,
+                        "field_width_in_bits": 32,
+                        "is_signed": true,
+                        "is_char": false,
+                        "is_bool": false
+                      },
+                      "index_type": {
+                        "id": 4,
+                        "kind_type": "BTF_KIND_INT",
+                        "name": "__ARRAY_SIZE_TYPE__",
+                        "size_in_bytes": 4,
+                        "offset_from_start_in_bits": 0,
+                        "field_width_in_bits": 32,
+                        "is_signed": false,
+                        "is_char": false,
+                        "is_bool": false
+                      }
+                    }
+                  }
+                },
+                {
+                  "name": "key",
+                  "offset_from_start_in_bits": 64,
+                  "type": {
+                    "id": 5,
+                    "kind_type": "BTF_KIND_PTR",
+                    "type": {
+                      "id": 6,
+                      "kind_type": "BTF_KIND_TYPEDEF",
+                      "name": "uint32_t",
+                      "type": {
+                        "id": 7,
+                        "kind_type": "BTF_KIND_INT",
+                        "name": "unsigned int",
+                        "size_in_bytes": 4,
+                        "offset_from_start_in_bits": 0,
+                        "field_width_in_bits": 32,
+                        "is_signed": false,
+                        "is_char": false,
+                        "is_bool": false
+                      }
+                    }
+                  }
+                },
+                {
+                  "name": "max_entries",
+                  "offset_from_start_in_bits": 128,
+                  "type": {
+                    "id": 8,
+                    "kind_type": "BTF_KIND_PTR",
+                    "type": {
+                      "id": 9,
+                      "kind_type": "BTF_KIND_ARRAY",
+                      "count_of_elements": 4,
+                      "element_type": {
+                        "id": 2,
+                        "kind_type": "BTF_KIND_INT",
+                        "name": "int",
+                        "size_in_bytes": 4,
+                        "offset_from_start_in_bits": 0,
+                        "field_width_in_bits": 32,
+                        "is_signed": true,
+                        "is_char": false,
+                        "is_bool": false
+                      },
+                      "index_type": {
+                        "id": 4,
+                        "kind_type": "BTF_KIND_INT",
+                        "name": "__ARRAY_SIZE_TYPE__",
+                        "size_in_bytes": 4,
+                        "offset_from_start_in_bits": 0,
+                        "field_width_in_bits": 32,
+                        "is_signed": false,
+                        "is_char": false,
+                        "is_bool": false
+                      }
+                    }
+                  }
+                },
+                {
+                  "name": "values",
+                  "offset_from_start_in_bits": 192,
+                  "type": {
+                    "id": 13,
+                    "kind_type": "BTF_KIND_ARRAY",
+                    "count_of_elements": 0,
+                    "element_type": {
+                      "id": 10,
+                      "kind_type": "BTF_KIND_PTR",
+                      "type": {
+                        "id": 11,
+                        "kind_type": "BTF_KIND_FUNCTION_PROTOTYPE",
+                        "parameters": [
+                          {
+                            "name": "",
+                            "type": {
+                              "id": 12,
+                              "kind_type": "BTF_KIND_PTR",
+                              "type": {
+                                "id": 0,
+                                "kind_type": "BTF_KIND_VOID"
+                              }
+                            }
+                          }
+                        ],
+                        "return_type": {
+                          "id": 2,
+                          "kind_type": "BTF_KIND_INT",
+                          "name": "int",
+                          "size_in_bytes": 4,
+                          "offset_from_start_in_bits": 0,
+                          "field_width_in_bits": 32,
+                          "is_signed": true,
+                          "is_char": false,
+                          "is_bool": false
+                        }
+                      }
+                    },
+                    "index_type": {
+                      "id": 4,
+                      "kind_type": "BTF_KIND_INT",
+                      "name": "__ARRAY_SIZE_TYPE__",
+                      "size_in_bytes": 4,
+                      "offset_from_start_in_bits": 0,
+                      "field_width_in_bits": 32,
+                      "is_signed": false,
+                      "is_char": false,
+                      "is_bool": false
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

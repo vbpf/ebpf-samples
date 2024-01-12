@@ -28,6 +28,7 @@ add_custom_target(samples ALL
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/mapvalue-overrun.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/map_in_map.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/map_in_map_anonymous.o
+                          ${CMAKE_CURRENT_SOURCE_DIR}/build/map_in_map_typedef.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/map_in_map_legacy.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/nullmapref.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/stackok.o
@@ -102,6 +103,10 @@ add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/map_in_map_legacy.o
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/map_in_map_anonymous.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/map_in_map_anonymous.c
                    COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/map_in_map_anonymous.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/map_in_map_anonymous.o)
+
+add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/map_in_map_typedef.o
+                   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/map_in_map_typedef.c
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/map_in_map_typedef.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/map_in_map_typedef.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/nullmapref.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/nullmapref.c

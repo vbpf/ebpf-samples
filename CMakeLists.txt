@@ -21,6 +21,7 @@ add_custom_target(samples ALL
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/bpf2bpf.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/byteswap.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/ctxoffset.o
+                          ${CMAKE_CURRENT_SOURCE_DIR}/build/dependent_read.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/exposeptr.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/exposeptr2.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/loop.o
@@ -72,6 +73,10 @@ add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/byteswap.o
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/ctxoffset.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/ctxoffset.c
                    COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/ctxoffset.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/ctxoffset.o)
+
+add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/dependent_read.o
+                   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/dependent_read.c
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/dependent_read.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/dependent_read.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/exposeptr.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/exposeptr.c

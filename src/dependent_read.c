@@ -6,22 +6,22 @@
 __attribute__((section("xdp"), used)) void
 dependent_read(struct xdp_md* ctx)
 {
-    // Load data into r7
-    asm volatile("r7 = %0" : : "r"(ctx->data));
-    // Load data_end into r8
-    asm volatile("r8 = %0" : : "r"(ctx->data_end));
-    // Compute packet length and store in r8.
-    asm volatile("r8 -= r7");
-    // Set flag register to 0
-    asm volatile("r9 = 0x0");
-    // Check if packet length (r8) is less than 4
-    asm volatile("if r8 < 4 goto l1");
-    // Set flag register to 1 (only hit if r8 >= 4).
-    asm volatile("r9 = 0x1");
-    // If flag is not set (and hence r8 < 4), exit
-    asm volatile("l1: if r9 == 0x0 goto l2");
-    // Access first 4 bytes of packet
-    asm volatile("r6 = *(u32 *)(r7 + 0x0)");
-    // Exit
-    asm volatile("l2: r0 = 0");
+    // Clear register r5.
+    asm volatile ("r5 = 0");
+    // Store data pointer and end pointer in registers r2 and r3.
+    asm volatile("r2 = %0" : : "r"(ctx->data));
+    asm volatile("r3 = %0" : : "r"(ctx->data_end));
+    // Save the data pointer in r1 (as r2 will be modified).
+    asm volatile ("r1 = r2");
+    // Check if the packet is at least 4 bytes long.
+    asm volatile ("r2 += 4");
+    asm volatile ("if r2 > r3 goto +1");
+    // Set the value of r5 to 1 if the packet is at least 4 bytes long.
+    asm volatile ("r5 = 1");
+    // Skip the next instruction if r5 is 0.
+    asm volatile ("if r5 == 0 goto +1");
+    // Read 4 bytes from the packet.
+    asm volatile ("r0 = *(u32 *)(r1 + 0)");
+    // Return 0.
+    asm volatile ("r0 = 0");
 }

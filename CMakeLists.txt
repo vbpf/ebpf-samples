@@ -35,6 +35,7 @@ add_custom_target(samples ALL
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/map_in_map_legacy.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/nullmapref.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/stackok.o
+                          ${CMAKE_CURRENT_SOURCE_DIR}/store_map_value_in_map.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/packet_access.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/packet_start_ok.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/packet_overflow.o
@@ -130,6 +131,10 @@ add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/nullmapref.o
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/stackok.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/stackok.c
                    COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/stackok.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/stackok.o)
+
+add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/store_map_value_in_map.o
+                   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/store_map_value_in_map.c
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/store_map_value_in_map.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/store_map_value_in_map.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/packet_access.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/packet_access.c

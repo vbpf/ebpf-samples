@@ -40,6 +40,7 @@ add_custom_target(samples ALL
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/ringbuf_uninit.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/tail_call.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/tail_call_bad.o
+                          ${CMAKE_CURRENT_SOURCE_DIR}/build/tail_call_single_section.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/twomaps.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/twostackvars.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/twotypes.o
@@ -147,6 +148,10 @@ add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/tail_call.o
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/tail_call_bad.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/tail_call_bad.c
                    COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/tail_call_bad.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/tail_call_bad.o)
+
+add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/tail_call_single_section.o
+                   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/tail_call_single_section.c
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/tail_call_single_section.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/tail_call_single_section.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/twomaps.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/twomaps.c

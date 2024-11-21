@@ -41,6 +41,7 @@ add_custom_target(samples ALL
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/packet_overflow.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/packet_reallocate.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/prog_array.o
+                          ${CMAKE_CURRENT_SOURCE_DIR}/build/ringbuf_in_map.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/ringbuf_uninit.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/tail_call.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/tail_call_bad.o
@@ -155,6 +156,10 @@ add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/packet_reallocate.o
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/prog_array.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/prog_array.c
                    COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/prog_array.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/prog_array.o)
+
+add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/ringbuf_in_map.o
+                   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/ringbuf_in_map.c
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/ringbuf_in_map.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/ringbuf_in_map.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/ringbuf_uninit.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/ringbuf_uninit.c

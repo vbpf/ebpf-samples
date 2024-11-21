@@ -26,9 +26,9 @@ int func(void* ctx) {
         uint32_t inner_key = 0;
         void* ret = bpf_map_lookup_elem(nolocal_lru_map, &inner_key);
         if (ret) {
-            return 0;
-        } else {
             return bpf_ringbuf_output(ret, &inner_key, sizeof(inner_key), 0);
+        } else {
+            return 0;
         }
     }
     return 0;

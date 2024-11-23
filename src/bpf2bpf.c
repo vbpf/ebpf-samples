@@ -17,9 +17,19 @@ int add1(int* x) {
     return result;
 }
 
+__attribute__ ((optnone))
+int add2(int* x) {
+    // Force using stack space in this function.
+    int inner_array[ARRAY_SIZE];
+    inner_array[1] = 13;
+
+    add1(x);
+    return add1(x);
+}
+
 #define CALLER_VALUE 3
 
-// This program is intended to return 3 + 1 = 4.
+// This program is intended to return 3 + 2 + 2 = 7.
 // If there is any error in execution (say due to a bug in
 // a JIT compiler or interpreter) it will instead return -1.
 __attribute__((section("test"), used))
@@ -31,7 +41,8 @@ int func(void* ctx) {
     outer_array[1] = CALLER_VALUE;
 
     // Ask callee to modify part of the caller's stack.
-    int result = add1(&outer_array[0]);
+    add2(&outer_array[0]);
+    int result = add2(&outer_array[0]);
 
     // Verify that the caller's stack was modified as requested.
     if (result != outer_array[0]) {

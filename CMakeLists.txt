@@ -26,6 +26,7 @@ add_custom_target(samples ALL
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/exposeptr.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/exposeptr2.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/global_variable.o
+                          ${CMAKE_CURRENT_SOURCE_DIR}/build/global_variable_2.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/loop.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/mapoverflow.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/mapunderflow.o
@@ -97,6 +98,10 @@ add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/exposeptr2.o
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/global_variable.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/global_variable.c
                    COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/global_variable.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/global_variable.o)
+
+add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/global_variable_2.o
+                   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/global_variable_2.c
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/global_variable_2.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/global_variable_2.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/loop.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/loop.c

@@ -13,5 +13,5 @@
       14:	if r1 == 0 goto +1 <16>
       15:	r0 = *(u64 *)(r1 + 0)
       16:	exit
-map 0:(original_fd = 1, inner_map_fd = 4294967295, type = 2, max_entries = 1, value_size = 8, key_size = 4)
-map 1:(original_fd = 2, inner_map_fd = 4294967295, type = 2, max_entries = 2, value_size = 8, key_size = 4)
+map 0:(original_fd = 1, inner_map_fd = -1, type = 2, max_entries = 1, value_size = 8, key_size = 4)
+map 1:(original_fd = 2, inner_map_fd = -1, type = 2, max_entries = 2, value_size = 8, key_size = 4)

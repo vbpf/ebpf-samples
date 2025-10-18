@@ -9,4 +9,4 @@
        9:	if r1 == 0 goto +1 <11>
       10:	r0 = *(u64 *)(r1 + 0)
       11:	exit
-map 0:(original_fd = 1, inner_map_fd = 4294967295, type = 2, max_entries = 1, value_size = 4, key_size = 4)
+map 0:(original_fd = 1, inner_map_fd = -1, type = 2, max_entries = 1, value_size = 4, key_size = 4)

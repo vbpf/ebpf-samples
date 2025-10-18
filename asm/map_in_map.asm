@@ -17,5 +17,5 @@
       18:	r0 = map_lookup_elem:1(map_fd r1, map_key r2)
       19:	r0 = 0
       20:	exit
-map 0:(original_fd = 1, inner_map_fd = 4294967295, type = 2, max_entries = 1, value_size = 4, key_size = 4)
+map 0:(original_fd = 1, inner_map_fd = -1, type = 2, max_entries = 1, value_size = 4, key_size = 4)
 map 1:(original_fd = 2, inner_map_fd = 1, type = 12, max_entries = 1, value_size = 4, key_size = 4)

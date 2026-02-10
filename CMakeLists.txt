@@ -18,16 +18,19 @@ add_custom_target(samples ALL
                   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/build/badhelpercall.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/badmapptr.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/badrelo.o
+                          ${CMAKE_CURRENT_SOURCE_DIR}/build/bounded_loop.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/bpf2bpf.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/byteswap.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/correlated_branch.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/ctxoffset.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/dependent_read.o
+                          ${CMAKE_CURRENT_SOURCE_DIR}/build/divzero.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/exposeptr.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/exposeptr2.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/externalfunction.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/global_variable.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/global_variable_2.o
+                          ${CMAKE_CURRENT_SOURCE_DIR}/build/infinite_loop.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/loop.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/mapoverflow.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/mapunderflow.o
@@ -37,6 +40,7 @@ add_custom_target(samples ALL
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/map_in_map_typedef.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/map_in_map_legacy.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/nullmapref.o
+                          ${CMAKE_CURRENT_SOURCE_DIR}/build/ptr_arith.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/stackok.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/store_map_value_in_map.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/packet_access.o
@@ -203,3 +207,19 @@ add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/twotypes.o
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/wronghelper.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/wronghelper.c
                    COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/wronghelper.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/wronghelper.o)
+
+add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/divzero.o
+                   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/divzero.c
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/divzero.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/divzero.o)
+
+add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/ptr_arith.o
+                   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/ptr_arith.c
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/ptr_arith.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/ptr_arith.o)
+
+add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/infinite_loop.o
+                   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/infinite_loop.c
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/infinite_loop.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/infinite_loop.o)
+
+add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/bounded_loop.o
+                   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/bounded_loop.c
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/bounded_loop.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/bounded_loop.o)

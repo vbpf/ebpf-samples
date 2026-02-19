@@ -61,6 +61,7 @@ add_custom_target(samples ALL
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/tail_call.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/tail_call_bad.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/twomaps.o
+                          ${CMAKE_CURRENT_SOURCE_DIR}/build/twomaps_btf.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/twostackvars.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/twotypes.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/wronghelper.o)
@@ -203,6 +204,10 @@ add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/tail_call_bad.o
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/twomaps.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/twomaps.c
                    COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/twomaps.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/twomaps.o)
+
+add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/twomaps_btf.o
+                   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/twomaps_btf.c
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/twomaps_btf.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/twomaps_btf.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/twostackvars.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/twostackvars.c

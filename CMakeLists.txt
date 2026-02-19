@@ -14,6 +14,14 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(libbpf)
 
+# clang -target bpf doesn't automatically find platform-specific system headers
+# or set architecture macros. On Debian/Ubuntu x86_64 we need to add the
+# multiarch include path and define __x86_64__ so glibc headers pick the
+# correct stubs (avoids needing libc6-dev-i386 for 32-bit stubs).
+if(CMAKE_SYSTEM_PROCESSOR STREQUAL "x86_64" AND EXISTS "/usr/include/x86_64-linux-gnu")
+  set(BPF_EXTRA_INCLUDES -D__x86_64__ -isystem /usr/include/x86_64-linux-gnu)
+endif()
+
 add_custom_target(samples ALL
                   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/build/badhelpercall.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/badmapptr.o
@@ -42,7 +50,7 @@ add_custom_target(samples ALL
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/nullmapref.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/ptr_arith.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/stackok.o
-                          ${CMAKE_CURRENT_SOURCE_DIR}/store_map_value_in_map.o
+                          ${CMAKE_CURRENT_SOURCE_DIR}/build/store_map_value_in_map.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/packet_access.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/packet_start_ok.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/packet_overflow.o
@@ -62,164 +70,164 @@ add_custom_target(samples ALL
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/badhelpercall.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/badhelpercall.c
-                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/badhelpercall.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/badhelpercall.o)
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/badhelpercall.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/badhelpercall.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/badmapptr.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/badmapptr.c
-                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/badmapptr.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/badmapptr.o)
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/badmapptr.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/badmapptr.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/badrelo.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/badrelo.c
-                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/badrelo.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/badrelo.o)
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/badrelo.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/badrelo.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/bpf2bpf.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/bpf2bpf.c
-                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/bpf2bpf.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/bpf2bpf.o)
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/bpf2bpf.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/bpf2bpf.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/byteswap.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/byteswap.c
-                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/byteswap.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/byteswap.o)
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/byteswap.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/byteswap.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/correlated_branch.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/correlated_branch.c
-                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/correlated_branch.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/correlated_branch.o)
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/correlated_branch.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/correlated_branch.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/ctxoffset.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/ctxoffset.c
-                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/ctxoffset.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/ctxoffset.o)
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/ctxoffset.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/ctxoffset.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/dependent_read.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/dependent_read.c
-                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/dependent_read.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/dependent_read.o)
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/dependent_read.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/dependent_read.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/exposeptr.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/exposeptr.c
-                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/exposeptr.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/exposeptr.o)
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/exposeptr.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/exposeptr.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/exposeptr2.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/exposeptr2.c
-                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/exposeptr2.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/exposeptr2.o)
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/exposeptr2.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/exposeptr2.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/externalfunction.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/externalfunction.c
-                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/externalfunction.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/externalfunction.o)
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/externalfunction.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/externalfunction.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/global_variable.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/global_variable.c
-                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/global_variable.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/global_variable.o)
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/global_variable.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/global_variable.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/global_variable_2.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/global_variable_2.c
-                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/global_variable_2.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/global_variable_2.o)
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/global_variable_2.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/global_variable_2.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/loop.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/loop.c
-                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/loop.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/loop.o)
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/loop.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/loop.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/mapoverflow.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/mapoverflow.c
-                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/mapoverflow.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/mapoverflow.o)
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/mapoverflow.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/mapoverflow.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/mapunderflow.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/mapunderflow.c
-                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/mapunderflow.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/mapunderflow.o)
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/mapunderflow.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/mapunderflow.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/mapvalue-overrun.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/mapvalue-overrun.c
-                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/mapvalue-overrun.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/mapvalue-overrun.o)
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/mapvalue-overrun.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/mapvalue-overrun.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/map_in_map.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/map_in_map.c
-                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/map_in_map.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/map_in_map.o)
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/map_in_map.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/map_in_map.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/map_in_map_legacy.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/map_in_map_legacy.c
-                   COMMAND clang -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/map_in_map_legacy.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/map_in_map_legacy.o)
+                   COMMAND clang -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/map_in_map_legacy.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/map_in_map_legacy.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/map_in_map_anonymous.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/map_in_map_anonymous.c
-                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/map_in_map_anonymous.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/map_in_map_anonymous.o)
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/map_in_map_anonymous.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/map_in_map_anonymous.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/map_in_map_typedef.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/map_in_map_typedef.c
-                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/map_in_map_typedef.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/map_in_map_typedef.o)
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/map_in_map_typedef.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/map_in_map_typedef.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/nullmapref.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/nullmapref.c
-                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/nullmapref.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/nullmapref.o)
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/nullmapref.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/nullmapref.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/stackok.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/stackok.c
-                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/stackok.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/stackok.o)
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/stackok.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/stackok.o)
 
-add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/store_map_value_in_map.o
+add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/store_map_value_in_map.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/store_map_value_in_map.c
-                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/store_map_value_in_map.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/store_map_value_in_map.o)
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/store_map_value_in_map.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/store_map_value_in_map.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/packet_access.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/packet_access.c
-                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/packet_access.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/packet_access.o)
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/packet_access.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/packet_access.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/packet_start_ok.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/packet_start_ok.c
-                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/packet_start_ok.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/packet_start_ok.o)
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/packet_start_ok.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/packet_start_ok.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/packet_overflow.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/packet_overflow.c
-                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/packet_overflow.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/packet_overflow.o)
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/packet_overflow.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/packet_overflow.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/packet_reallocate.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/packet_reallocate.c
-                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/packet_reallocate.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/packet_reallocate.o)
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/packet_reallocate.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/packet_reallocate.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/prog_array.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/prog_array.c
-                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/prog_array.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/prog_array.o)
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/prog_array.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/prog_array.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/ringbuf_in_map.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/ringbuf_in_map.c
-                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/ringbuf_in_map.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/ringbuf_in_map.o)
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/ringbuf_in_map.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/ringbuf_in_map.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/ringbuf_uninit.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/ringbuf_uninit.c
-                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/ringbuf_uninit.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/ringbuf_uninit.o)
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/ringbuf_uninit.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/ringbuf_uninit.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/tail_call.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/tail_call.c
-                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/tail_call.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/tail_call.o)
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/tail_call.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/tail_call.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/tail_call_bad.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/tail_call_bad.c
-                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/tail_call_bad.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/tail_call_bad.o)
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/tail_call_bad.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/tail_call_bad.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/twomaps.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/twomaps.c
-                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/twomaps.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/twomaps.o)
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/twomaps.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/twomaps.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/twostackvars.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/twostackvars.c
-                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c -g ${CMAKE_CURRENT_SOURCE_DIR}/src/twostackvars.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/twostackvars.o)
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c -g ${CMAKE_CURRENT_SOURCE_DIR}/src/twostackvars.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/twostackvars.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/twotypes.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/twotypes.c
-                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/twotypes.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/twotypes.o)
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/twotypes.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/twotypes.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/wronghelper.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/wronghelper.c
-                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/wronghelper.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/wronghelper.o)
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/wronghelper.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/wronghelper.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/divzero.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/divzero.c
-                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/divzero.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/divzero.o)
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/divzero.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/divzero.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/ptr_arith.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/ptr_arith.c
-                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/ptr_arith.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/ptr_arith.o)
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/ptr_arith.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/ptr_arith.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/infinite_loop.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/infinite_loop.c
-                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/infinite_loop.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/infinite_loop.o)
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/infinite_loop.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/infinite_loop.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/bounded_loop.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/bounded_loop.c
-                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src -c ${CMAKE_CURRENT_SOURCE_DIR}/src/bounded_loop.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/bounded_loop.o)
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/bounded_loop.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/bounded_loop.o)

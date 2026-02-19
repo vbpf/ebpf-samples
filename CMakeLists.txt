@@ -64,7 +64,18 @@ add_custom_target(samples ALL
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/twomaps_btf.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/twostackvars.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/twotypes.o
-                          ${CMAKE_CURRENT_SOURCE_DIR}/build/wronghelper.o)
+                          ${CMAKE_CURRENT_SOURCE_DIR}/build/wronghelper.o
+                          ${CMAKE_CURRENT_SOURCE_DIR}/build/lpm_trie.o
+                          ${CMAKE_CURRENT_SOURCE_DIR}/build/percpu_array.o
+                          ${CMAKE_CURRENT_SOURCE_DIR}/build/percpu_hash.o
+                          ${CMAKE_CURRENT_SOURCE_DIR}/build/hash_of_maps.o
+                          ${CMAKE_CURRENT_SOURCE_DIR}/build/devmap.o
+                          ${CMAKE_CURRENT_SOURCE_DIR}/build/cpumap.o
+                          ${CMAKE_CURRENT_SOURCE_DIR}/build/queue_stack.o
+                          ${CMAKE_CURRENT_SOURCE_DIR}/build/perf_event_array.o
+                          ${CMAKE_CURRENT_SOURCE_DIR}/build/sockmap.o
+                          ${CMAKE_CURRENT_SOURCE_DIR}/build/global_func.o
+                          ${CMAKE_CURRENT_SOURCE_DIR}/build/bpf_loop_helper.o)
 
 # We use custom commands here so that the same command will be used on
 # Linux and Windows (where cmake would normally use cl instead of clang).
@@ -236,3 +247,47 @@ add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/infinite_loop.o
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/bounded_loop.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/bounded_loop.c
                    COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/bounded_loop.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/bounded_loop.o)
+
+add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/lpm_trie.o
+                   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/lpm_trie.c
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/lpm_trie.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/lpm_trie.o)
+
+add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/percpu_array.o
+                   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/percpu_array.c
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/percpu_array.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/percpu_array.o)
+
+add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/percpu_hash.o
+                   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/percpu_hash.c
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/percpu_hash.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/percpu_hash.o)
+
+add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/hash_of_maps.o
+                   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/hash_of_maps.c
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/hash_of_maps.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/hash_of_maps.o)
+
+add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/devmap.o
+                   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/devmap.c
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/devmap.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/devmap.o)
+
+add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/cpumap.o
+                   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/cpumap.c
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/cpumap.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/cpumap.o)
+
+add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/queue_stack.o
+                   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/queue_stack.c
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/queue_stack.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/queue_stack.o)
+
+add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/perf_event_array.o
+                   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/perf_event_array.c
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/perf_event_array.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/perf_event_array.o)
+
+add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/sockmap.o
+                   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/sockmap.c
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/sockmap.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/sockmap.o)
+
+add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/global_func.o
+                   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/global_func.c
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/global_func.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/global_func.o)
+
+add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/bpf_loop_helper.o
+                   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/bpf_loop_helper.c
+                   COMMAND clang -g -target bpf -Wall -O2 -I ${libbpf_SOURCE_DIR}/src ${BPF_EXTRA_INCLUDES} -c ${CMAKE_CURRENT_SOURCE_DIR}/src/bpf_loop_helper.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/bpf_loop_helper.o)
